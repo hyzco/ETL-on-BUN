@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<users>
+  <user>
+    <id>1</id>
+    <name>John Doe</name>
+    <age>30</age>
+    <email>johndoe@example.com</email>
+    <jobTitle>Software Developer</jobTitle>
+    <gender>Male</gender>
+    <address>
+      <street>123 Main St</street>
+      <city>Anytown</city>
+      <state>CA</state>
+      <zipcode>12345</zipcode>
+    </address>
+    <phoneNumbers>
+      <phone>+1-555-123-4567</phone>
+      <phone>+1-555-987-6543</phone>
+    </phoneNumbers>
+    <skills>
+      <skill>JavaScript</skill>
+      <skill>React</skill>
+      <skill>Node.js</skill>
+    </skills>
+  </user>
+  <user>
+    <id>2</id>
+    <name>Jane Smith</name>
+    <age>25</age>
+    <email>janesmith@example.com</email>
+    <jobTitle>Graphic Designer</jobTitle>
+    <gender>Female</gender>
+    <address>
+      <street>456 Oak Ave</street>
+      <city>Somewhere</city>
+      <state>NY</state>
+      <zipcode>67890</zipcode>
+    </address>
+    <phoneNumbers>
+      <phone>+1-555-456-7890</phone>
+      <phone>+1-555-654-3210</phone>
+    </phoneNumbers>
+    <skills>
+      <skill>Photoshop</skill>
+      <skill>Illustrator</skill>
+      <skill>InDesign</skill>
+    </skills>
+  </user>
+  <user>
+    <id>3</id>
+    <name>Bob Johnson</name>
+    <age>45</age>
+    <email>bobjohnson@example.com</email>
+    <jobTitle>Project Manager</jobTitle>
+    <gender>Male</gender>
+    <address>
+      <street>789 Pine Blvd</street>
+      <city>Elsewhere</city>
+      <state>TX</state>
+      <zipcode>11223</zipcode>
+    </address>
+    <phoneNumbers>
+      <phone>+1-555-321-0987</phone>
+    </phoneNumbers>
+    <skills>
+      <skill>Agile</skill>
+      <skill>Scrum</skill>
+      <skill>Budget Management</skill>
+    </skills>
+  </user>
+  <user>
+    <id>4</id>
+    <name>Alice Brown</name>
+    <age>35</age>
+    <email>alicebrown@example.com</email>
+    <jobTitle>Data Analyst</jobTitle>
+    <gender>Female</gender>
+    <address>
+      <street>321 Maple Ln</street>
+      <city>Anycity</city>
+      <state>FL</state>
+      <zipcode>44556</zipcode>
+    </address>
+    <phoneNumbers>
+      <phone>+1-555-654-3212</phone>
+    </phoneNumbers>
+    <skills>
+      <skill>Data Analysis</skill>
+      <skill>Python</skill>
+      <skill>SQL</skill>
+    </skills>
+  </user>
+  <user>
+    <id>5</id>
+    <name>Tom Harris</name>
+    <age>29</age>
+    <email>tomharris@example.com</email>
+    <jobTitle>Marketing Specialist</jobTitle>
+    <gender>Male</gender>
+    <address>
+      <street>654 Cedar St</street>
+      <city>Unknownville</city>
+      <state>WA</state>
+      <zipcode>77889</zipcode>
+    </address>
+    <phoneNumbers>
+      <phone>+1-555-987-1234</phone>
+    </phoneNumbers>
+    <skills>
+      <skill>SEO</skill>
+      <skill>Content Marketing</skill>
+      <skill>Social Media</skill>
+    </skills>
+  </user>
+  <user>
+    <id>6</id>
+    <name>Emily Davis</name>
+    <age>40</age>
+    <email>emilydavis@example.com</email>
+    <jobTitle>Financial Advisor</jobTitle>
+    <gender>Female</gender>
+    <address>
+      <street>876 Birch Rd</street>
+      <city>Homestead</city>
+      <state>OH</state>
+      <zipcode>33444</zipcode>
+    </address>
+    <phoneNumbers>
+      <phone>+1-555-345-6789</phone>
+    </phoneNumbers>
+    <skills>
+      <skill>Investments</skill>
+      <skill>Risk Management</skill>
+      <skill>Client Communication</skill>
+    </skills>
+  </user>
+</users>
