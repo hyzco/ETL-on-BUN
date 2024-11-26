@@ -26,14 +26,7 @@ export default class StateMachine {
 
   canTransitionTo(state: STATES) {
     const allowed = this.transitions.get(this.getState());
-    console.log("allowed", allowed);
-    console.log("alo", this.getState());
-    if (allowed) {
-      console.log("allowed", allowed);
-      return allowed.includes(state);
-    } else {
-      return false;
-    }
+    return allowed.includes(state);
   }
 
   transitionTo(state: STATES) {
