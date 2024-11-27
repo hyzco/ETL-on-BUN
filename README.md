@@ -1,3 +1,4 @@
+TODO: tests + node comparison plus benchmarks
 # etl
 
 To install dependencies:
