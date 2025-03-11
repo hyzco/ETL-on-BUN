@@ -10,7 +10,7 @@ export default class EtlState extends StateMachine {
     super.addTransition(STATES.IDLE, [STATES.READY, STATES.FAILED]);
     super.addTransition(STATES.READY, [STATES.RUNNING]);
     super.addTransition(STATES.RUNNING, [STATES.COMPLETED, STATES.FAILED]);
-    super.addTransition(STATES.FAILED, [STATES.READY]);
-    super.addTransition(STATES.COMPLETED, [STATES.READY]);
+    super.addTransition(STATES.FAILED, []);
+    super.addTransition(STATES.COMPLETED, []);
   }
 }
