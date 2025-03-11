@@ -1,49 +1,69 @@
+// File: lib/etl/StateMachine.ts
+
+/**
+ * Enum defining the possible states of the ETL process
+ */
 export enum STATES {
   IDLE = "IDLE",
   READY = "READY",
   RUNNING = "RUNNING",
   COMPLETED = "COMPLETED",
-  FAILED = "FAILED",
+  FAILED = "FAILED"
 }
 
-type transitionMap = Map<STATES, STATES[]>;
-
+/**
+ * Generic state machine implementation to manage ETL state transitions
+ */
 export default class StateMachine {
-  currState: STATES;
-  transitions: transitionMap;
+  #state: STATES;
+  readonly #allowedTransitions: Map<STATES, STATES[]> = new Map();
+
+  /**
+   * Create a new state machine with the specified initial state
+   * @param initialState The initial state for the machine
+   */
   constructor(initialState: STATES) {
-    this.currState = initialState;
-    this.transitions = new Map<STATES, STATES[]>();
+    this.#state = initialState;
   }
 
-  getState() {
-    return this.currState;
+  /**
+   * Get the current state
+   * @returns Current state
+   */
+  getState(): STATES {
+    return this.#state;
   }
 
-  addTransition(state: STATES, allowedTransitions: STATES[]) {
-    this.transitions.set(state, allowedTransitions);
+  /**
+   * Define allowed state transitions
+   * @param fromState The starting state
+   * @param toStates Array of states that can be transitioned to
+   */
+  addTransition(fromState: STATES, toStates: STATES[]) {
+    this.#allowedTransitions.set(fromState, toStates);
   }
 
-  canTransitionTo(state: STATES) {
-    const allowed = this.transitions.get(this.getState());
-    console.log("allowed", allowed);
-    console.log("alo", this.getState());
-    if (allowed) {
-      console.log("allowed", allowed);
-      return allowed.includes(state);
-    } else {
+  /**
+   * Attempt to transition to a new state
+   * @param newState The target state
+   * @returns true if transition successful, false otherwise
+   */
+  transitionTo(newState: STATES): boolean {
+    const allowedStates = this.#allowedTransitions.get(this.#state);
+    
+    if (!allowedStates) {
+      console.error(`No transitions defined for state: ${this.#state}`);
       return false;
     }
-  }
-
-  transitionTo(state: STATES) {
-    if (this.canTransitionTo(state)) {
-      console.info(`Transitioning from ${this.currState} to ${state}.`);
-      this.currState = state; // Update currState consistently
-    } else {
-      throw new Error(
-        `Invalid state transition from ${this.currState} to ${state}`
-      );
+    
+    if (!allowedStates.includes(newState)) {
+      console.error(`Transition from ${this.#state} to ${newState} not allowed`);
+      console.error(`Allowed transitions: ${allowedStates.join(', ')}`);
+      return false;
     }
+    
+    console.log(`State transition: ${this.#state} -> ${newState}`);
+    this.#state = newState;
+    return true;
   }
 }

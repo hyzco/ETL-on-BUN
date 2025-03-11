@@ -1,36 +1,72 @@
 {
-    "compilerOptions": {
-        //tsconfig.json
-        "baseUrl": "./src",
-        // "paths": {
-        //     "data": [
-        //         "./data.ts"
-        //     ]
-        // },
-        "noImplicitAny": true,
-        "strictNullChecks": true,
-        // Enable latest features
-        "lib": [
-            "ESNext",
-            "DOM"
-        ],
-        "target": "ESNext",
-        "module": "ESNext",
-        "moduleDetection": "force",
-        "jsx": "react-jsx",
-        "allowJs": false,
-        // Bundler mode
-        "moduleResolution": "bundler",
-        "allowImportingTsExtensions": true,
-        "verbatimModuleSyntax": true,
-        "noEmit": true,
-        // Best practices
-        "strict": true,
-        "skipLibCheck": true,
-        "noFallthroughCasesInSwitch": true,
-        // Some stricter flags (disabled by default)
-        "noUnusedLocals": false,
-        "noUnusedParameters": false,
-        "noPropertyAccessFromIndexSignature": false
-    }
+  "compilerOptions": {
+    /* Basic Options */
+    "target": "ES2020",
+    "module": "ES2020",
+    "moduleResolution": "node",
+    "lib": [
+      "ES2020"
+    ],
+    "outDir": "./dist/esm",
+    "rootDir": "./src",
+    "sourceMap": true,
+    "inlineSources": true,
+    // "allowJs": true,
+    /* Strict Type-Checking Options */
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    /* Additional Checks */
+    //   "noUnusedLocals": true,
+    //   "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+    /* Module Resolution Options */
+    "baseUrl": "./",
+    "paths": {
+      // "@/*": [
+      //   "./*.ts"
+      // ],
+      // "@/providers/*": [
+      //   "./providers/*.ts"
+      // ],
+      // "@/services/*": [
+      //   "./services/*.ts"
+      // ],
+      // "@/interfaces/*": [
+      //   "./interfaces/*.ts"
+      // ]
+    },
+    /* Experimental Options */
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    /* Advanced Options */
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    /* Output Control */
+    "noEmit": false,
+    "noEmitOnError": true,
+    "incremental": true,
+    "tsBuildInfoFile": "./dist/.tsbuildinfo"
+  },
+  "include": [
+    "src/index.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
+  "typedocOptions": {
+    "entryPoints": [
+      "./index.ts"
+    ],
+    "out": "./dist/docs"
+  }
 }

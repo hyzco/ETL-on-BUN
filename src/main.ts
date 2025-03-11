@@ -1,4 +1,4 @@
-import { DataSourceType } from "dataSources/DataSource.js";
+import { DataSourceType } from "./dataSources/DataSource.js";
 import DataSourceFactory from "./dataSources/DataSourceFactory.js";
 import ETL from "./etl/ETL.class.js";
 import Stage from "./etl/ETL.stage.class.js";
@@ -43,7 +43,7 @@ async function transformData({ params, etlData }: any) {
 
 // Load step function to display final processed data
 async function loadData({ params, etlData }: any) {
-  console.log(`[Load] Preparing to load data: ${etlData.length} rows of data`);
+  console.log(`[Load] Preparing to load data.`);
 
   Bun.file(Bun.pathToFileURL("src/data/output.json"))
     .writer()
@@ -90,10 +90,6 @@ const extractStep = new Step(
       {
         sourceType: DataSourceType.CSV,
         source: Bun.pathToFileURL("./src/data/people-100000.csv"),
-      },
-      {
-        sourceType: DataSourceType.CSV,
-        source: Bun.pathToFileURL("./src/data/customers-100000.csv"),
       },
     ],
   }

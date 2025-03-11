@@ -1,25 +1,63 @@
 {
   "name": "etl",
   "version": "1.0.0",
-  "main": "main.js",
+  "description": "A flexible ETL library for data mapping and transformation pipelines",
+  "author": "Hasan Ali Yuzgec",
+  "license": "ISC",
   "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "typings": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js",
+      "types": "./dist/types/index.d.ts"
+    }
+  },
+  "files": [
+    "esm",
+    "cjs",
+    "src"
+  ],
   "scripts": {
+    "clean": "rimraf dist",
+    "build": "pnpm run build:esm && npm run build:cjs && npm run build:types",
+    "build:bundle": "tsup src/index.ts --format esm,cjs --dts --out-dir dist",
+    "build:esm": "tsc --pretty --project .",
+    "build:cjs": "tsc --pretty --project tsconfig.cjs.json",
+    "build:types": "tsc --pretty --project tsconfig.types.json",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "bun run ./src/main.ts",
-    "debug": "bun --inspect ./src/main.ts"
+    "debug": "bun --inspect ./src/main.ts",
+    "prepare": "pnpm run clean & pnpm run build"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "keywords": [
+    "etl",
+    "data",
+    "pipeline",
+    "extract",
+    "transform",
+    "load",
+    "data-mapping",
+    "data-integration"
+  ],
   "devDependencies": {
-    "@types/bun": "latest",
-    "@types/xml2js": "^0.4.14"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
+    "@types/bun": "^1.1.13",
+    "@types/node": "^22.12.0",
+    "@types/xml2js": "^0.4.14",
+    "nodemon": "^3.1.7",
+    "rimraf": "^5.0.0",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
   },
   "dependencies": {
+    "tsup": "^8.4.0",
     "xml2js": "^0.6.2"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "bun": ">=1.0.0"
   }
 }

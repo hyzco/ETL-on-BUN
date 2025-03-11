@@ -1,4 +1,4 @@
-import { streamToArrayBuffer } from "utils/BufferUtils.js";
+import { streamToArrayBuffer } from "../utils/BufferUtils.js";
 import DataSource, { DataSourceType } from "./DataSource.js";
 import { parseStringPromise } from "xml2js";
 

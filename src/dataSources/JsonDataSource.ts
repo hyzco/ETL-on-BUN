@@ -1,4 +1,4 @@
-import { streamToArrayBuffer } from "utils/BufferUtils.js";
+import { streamToArrayBuffer } from "../utils/BufferUtils.js";
 import DataSource, { DataSourceType } from "./DataSource.js";
 
 export default class JsonDataSource implements DataSource {

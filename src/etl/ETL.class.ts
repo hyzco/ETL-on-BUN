@@ -1,14 +1,15 @@
-import Stage from "./ETL.stage.class.ts";
-import EtlState from "./ETL.state.ts";
-import Step from "./ETL.step.class.ts";
-import { STATES } from "../StateMachine.ts";
-//TODO: Sync-up jobs - which will update existing objects if the coming data is different than current
-//TODO: Make static functions to expose individual pieces / stages - steps etc.
-//it willbe used to update VM table
+// File: lib/etl/ETL.class.ts
+import { STATES } from "../StateMachine.js";
+import Stage from "./ETL.stage.class.js";
+import EtlState from "./ETL.state.js";
+import Step from "./ETL.step.class.js";
 
+/**
+ * Main ETL class to manage the entire pipeline
+ * Provides methods for adding stages, setting data, and executing the ETL process
+ */
 class ETL {
   #etlData: any = null;
-
   #state: EtlState = new EtlState(STATES.IDLE);
   stages: Stage[] = [];
 
@@ -16,27 +17,50 @@ class ETL {
     this.init();
   }
 
+  /**
+   * Initialize the ETL process and set state to READY
+   */
   init() {
     console.log("Current State: ", this.#state.getState());
     this.#state.transitionTo(STATES.READY);
   }
 
+  /**
+   * Add a stage to the ETL pipeline
+   * @param stage The stage to add
+   */
   addStage(stage: Stage) {
     this.stages.push(stage);
   }
 
+  /**
+   * Get all stages in the ETL pipeline
+   * @returns Array of stages
+   */
   getStages() {
     return this.stages;
   }
 
-  setEtlData(data: { initialData: string } | null) {
+  /**
+   * Set initial data for the ETL pipeline
+   * @param data Initial data to set
+   */
+  setEtlData(data: any) {
     this.#etlData = data;
   }
 
+  /**
+   * Get the current ETL data
+   * @returns Current ETL data
+   */
   getEtlData() {
     return this.#etlData;
   }
 
+  /**
+   * Execute all stages in the ETL pipeline
+   * @returns Result after all stages complete
+   */
   async execute() {
     try {
       let data = null;
@@ -55,7 +79,11 @@ class ETL {
     }
   }
 
-  // ETL Steps  Utils Start
+  /**
+   * Create a step executor with logging and timing
+   * @param name Name of the step
+   * @returns Function that wraps a step function with logging and timing
+   */
   executeStep = (name: any) => {
     return (step: (arg0: any) => any) => {
       return async (params: any) => {
@@ -72,6 +100,8 @@ class ETL {
           console.info(
             `[ETL][STEP]: ${name} - execution time: ${end - start} ms.`
           );
+          
+          return stepResponse;
         } catch (err) {
           console.error(`[ETL][STEP]: ${name} - could not executed.. ${err}`);
           Promise.reject(err);
@@ -80,9 +110,13 @@ class ETL {
     };
   };
 
-  executeStage =
-    (stageName: any) =>
-    (stageExecutor: (arg0: any) => any) =>
+  /**
+   * Create a stage executor with logging and timing
+   * @param stageName Name of the stage
+   * @returns Function that wraps a stage executor with logging and timing
+   */
+  executeStage = (stageName: any) => 
+    (stageExecutor: (arg0: any) => any) => 
     (params: any) => {
       console.log(`[ETL][STAGE]: ${stageName} - executing..`);
       return async (params: any) => {
@@ -97,6 +131,8 @@ class ETL {
           console.info(
             `[ETL][STAGE]: ${stageName} - execution time: ${end - start} ms.`
           );
+          
+          return stageResponse;
         } catch (err) {
           console.error(
             `[ETL][STAGE]: ${stageName} - could not executed.. ${err}`
@@ -105,8 +141,11 @@ class ETL {
         }
       };
     };
-  ///////////// ETL Steps Utils END
 
+  /**
+   * Start the ETL process
+   * @returns Promise that resolves when ETL completes
+   */
   async start() {
     if (this.#state.getState() === "RUNNING") {
       console.error("ETL IS ALREADY RUNNING....");
@@ -122,10 +161,10 @@ class ETL {
     try {
       this.#state.transitionTo(STATES.RUNNING);
 
-      await this.execute();
+      const result = await this.execute();
 
       this.#state.transitionTo(STATES.COMPLETED);
-      return true;
+      return result;
     } catch (err: any) {
       this.#state.transitionTo(STATES.FAILED);
       console.error(`[ETL] start() - ${err}`);
@@ -134,6 +173,9 @@ class ETL {
     }
   }
 
+  /**
+   * Retry starting the ETL process after a delay
+   */
   retryStart() {
     let sec = 2;
     const interval = setInterval(() => {
@@ -148,6 +190,9 @@ class ETL {
     }, 3000);
   }
 
+  /**
+   * Reset the ETL pipeline by clearing all stages
+   */
   clean = async () => {
     this.stages = [];
   };

@@ -1,7 +1,7 @@
-import { DataSourceType } from "./DataSource";
-import JsonDataSource from "./JsonDataSource";
-import XmlDataSource from "./XmlDataSource";
-import CsvDataSource from "./CsvDataSource";
+import { DataSourceType } from "./DataSource.js";
+import JsonDataSource from "./JsonDataSource.js";
+import XmlDataSource from "./XmlDataSource.js";
+import CsvDataSource from "./CsvDataSource.js";
 
 export default class DataSourceFactory {
   static createDataSource(type: DataSourceType, source: string) {
