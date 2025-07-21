@@ -1,8 +1,8 @@
-import { DataSourceType } from "./dataSources/DataSource.js";
-import DataSourceFactory from "./dataSources/DataSourceFactory.js";
-import ETL from "./etl/ETL.class.js";
-import Stage from "./etl/ETL.stage.class.js";
-import Step from "./etl/ETL.step.class.js";
+import { DataSourceType } from "../dataSources/DataSource.js";
+import DataSourceFactory from "../dataSources/DataSourceFactory.js";
+import ETL from "../etl/ETL.class.js";
+import Stage from "../etl/ETL.stage.class.js";
+import Step from "../etl/ETL.step.class.js";
 
 // Step 1: Define Functions for ETL Steps
 // ----------------------------------------------

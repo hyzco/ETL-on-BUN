@@ -1,6 +1,3 @@
-// src/index.ts
-
-
 // Export DataMapping ETL helpers
 import {
   createExtractStep,
@@ -19,9 +16,8 @@ import Step from "./etl/ETL.step.class.js";
 import EtlState from "./etl/ETL.state.js";
 
 // Export DataSourceFactory and types
-import { DataSourceType } from "./dataSources/DataSource.js";
+import DataSource, { DataSourceType } from "./dataSources/DataSource.js";
 import DataSourceFactory from "./dataSources/DataSourceFactory.js";
-import DataSource from "./dataSources/DataSource.js";
 
 // Main library exports
 export {

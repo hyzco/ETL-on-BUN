@@ -28,8 +28,8 @@
     "build:cjs": "tsc --pretty --project tsconfig.cjs.json",
     "build:types": "tsc --pretty --project tsconfig.types.json",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "bun run ./src/main.ts",
-    "debug": "bun --inspect ./src/main.ts",
+    "start": "bun run ./src/index.ts",
+    "debug": "bun --inspect ./src/index.ts",
     "prepare": "pnpm run clean & pnpm run build"
   },
   "keywords": [

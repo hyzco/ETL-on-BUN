@@ -10,7 +10,7 @@ import Step from "./ETL.step.class.js";
  */
 class ETL {
   #etlData: any = null;
-  #state: EtlState = new EtlState(STATES.IDLE);
+  readonly #state: EtlState = new EtlState(STATES.IDLE);
   stages: Stage[] = [];
 
   constructor() {
@@ -100,11 +100,11 @@ class ETL {
           console.info(
             `[ETL][STEP]: ${name} - execution time: ${end - start} ms.`
           );
-          
+
           return stepResponse;
         } catch (err) {
           console.error(`[ETL][STEP]: ${name} - could not executed.. ${err}`);
-          Promise.reject(err);
+          return false;
         }
       };
     };
@@ -115,8 +115,9 @@ class ETL {
    * @param stageName Name of the stage
    * @returns Function that wraps a stage executor with logging and timing
    */
-  executeStage = (stageName: any) => 
-    (stageExecutor: (arg0: any) => any) => 
+  executeStage =
+    (stageName: any) =>
+    (stageExecutor: (arg0: any) => any) =>
     (params: any) => {
       console.log(`[ETL][STAGE]: ${stageName} - executing..`);
       return async (params: any) => {
@@ -131,7 +132,7 @@ class ETL {
           console.info(
             `[ETL][STAGE]: ${stageName} - execution time: ${end - start} ms.`
           );
-          
+
           return stageResponse;
         } catch (err) {
           console.error(
