@@ -101,7 +101,7 @@ export function createLoadStep(destination: string, outputPath?: string | URL): 
             .write(JSON.stringify(etlData));
         } else if (typeof process !== 'undefined') {
           // Node.js environment
-          const fs = require('fs');
+          const fs = await import("fs");
           fs.writeFileSync(outputPath.toString(), JSON.stringify(etlData));
         } else {
           // Browser environment - could use localStorage or other storage mechanisms
